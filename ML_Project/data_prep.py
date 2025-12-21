@@ -118,27 +118,6 @@ def scaleNumVariables(
     # Return both scaled DataFrame and fitted scaler
     return df_scaled, scaler
 
-
-def inertia_plot(df: pd.DataFrame, n_clusters:int):
-    inertia = []
-
-    range_clusters = range(1, n_clusters)
-    for n_clus in range_clusters:  # iterate over desired ncluster range
-        kmclust = KMeans(n_clusters=n_clus, init='k-means++', n_init=15, random_state=1)
-        kmclust.fit(df)
-        inertia.append(kmclust.inertia_)  # save the inertia of the given cluster solution
-    
-    fig, ax = plt.subplots(figsize=(9,5))
-
-    ax.plot(range_clusters, inertia)
-    ax.set_xticks(range_clusters)
-    ax.set_ylabel("Inertia: SSw")
-    ax.set_xlabel("Number of clusters")
-    ax.set_title("Inertia plot over clusters", size=15)
-
-    plt.show()
-
-
 class preProcessing():
 
     def __init__(self,
