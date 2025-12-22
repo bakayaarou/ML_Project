@@ -8,17 +8,20 @@ from sklearn.cluster import KMeans
 from sklearn.impute import KNNImputer
 import category_encoders as ce
 
+"""
+This method recives a data frame and returns a tuple with two lists
+The first list of the tuple contains the collums attributes for the categorical values
+The second list of the tuple contains the collums attributes for the numerical values
+"""
 def colTypes(
-        df:pd.DataFrame, 
-        print_:bool=True
+        df:pd.DataFrame
     ) -> tuple:
     
     col_c = df.columns[(df.dtypes == "object") | (df.nunique() < 25)].tolist()
     col_n = df.columns.difference(col_c).tolist()
 
-    if print_:
-        print(f"Numeric Cols: {col_n}")
-        print(f"Categorical Cols: {col_c}")
+    print(f"Numeric Cols: {col_n}")
+    print(f"Categorical Cols: {col_c}")
         
     return col_n, col_c
 
